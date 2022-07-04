@@ -6,8 +6,21 @@ public class player : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public int hp;
+
+    private GameObject gManager;
+    private GameObject playerObject;
+
+    public float speed = 0.6f; 
+
+    //ÉvÉåÉCÉÑÅ[ñ≥ìG
+
     void Start()
     {
+        hp = 10;
+
+        gManager = GameObject.Find("GManager");
+        playerObject = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -18,20 +31,29 @@ public class player : MonoBehaviour
    
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            pos.z += 0.01f;
+            pos.z += speed;
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            pos.x -= 0.01f;
+            pos.x -= speed;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            pos.z-=0.01f;
+            pos.z-=speed;
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            pos.x += 0.01f;
+            pos.x += speed;
         }
         transform.position = new Vector3(pos.x, pos.y, pos.z);
+
+        if (hp <= gManager.GetComponent<GManager>().PlayerCheck()) 
+        {
+            Destroy(this.gameObject);
+        }
+     
     }
+
+ 
+
 }

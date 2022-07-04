@@ -21,12 +21,16 @@ public class Camera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = player.transform.localPosition.x + posXset;
-        float y = player.transform.localPosition.y + posYset;
-        float z = player.transform.localPosition.z + posZset;
+        if (player)
+        {
+            float x = player.transform.localPosition.x + posXset;
+            float y = player.transform.localPosition.y + posYset;
+            float z = player.transform.localPosition.z + posZset;
 
-        Vector3 newLocalPos = new Vector3(x, y, z);
-        transform.localPosition = Vector3.Lerp(transform.localPosition, newLocalPos, 1);
+
+            Vector3 newLocalPos = new Vector3(x, y, z);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, newLocalPos, 1);
+        }
 
     }
 }
